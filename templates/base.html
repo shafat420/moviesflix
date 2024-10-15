@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MovieStream{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{{ url_for('home') }}" class="logo">MovieStream</a>
+                <div class="nav-right">
+                    <form action="{{ url_for('search') }}" method="get" class="search-form desktop-search">
+                        <input type="text" name="query" placeholder="Search movies...">
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                    <div class="mobile-search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+                <form action="{{ url_for('search') }}" method="get" class="search-form mobile-search">
+                    <input type="text" name="query" placeholder="Search movies...">
+                    <button type="submit" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('movies') }}" class="nav-link">Movies</a></li>
+                    <li><a href="{{ url_for('tv_shows') }}" class="nav-link">TV Shows</a></li>
+                    <li><a href="{{ url_for('my_list') }}" class="nav-link">My List</a></li>
+                    <li><a href="{{ url_for('new_popular') }}" class="nav-link">New & Popular</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MovieStream</h3>
+                <p>MovieStream is your go-to platform for streaming the latest movies and TV shows. Enjoy unlimited entertainment at your fingertips.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('movies') }}">Movies</a></li>
+                    <li><a href="{{ url_for('tv_shows') }}">TV Shows</a></li>
+                    <li><a href="{{ url_for('my_list') }}">My List</a></li>
+                    <li><a href="{{ url_for('new_popular') }}">New & Popular</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 MovieStream. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
