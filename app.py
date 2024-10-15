@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from tmdb_api import get_popular_movies, search_movies, get_movie_details
 
@@ -34,9 +35,10 @@ def movie_detail(movie_id):
 
 @app.route('/new-popular')
 def new_popular():
-    # For now, we'll just use popular movies. You can modify this to fetch new and popular movies.
     movies = get_popular_movies()
     return render_template('new_popular.html', movies=movies)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get the port from environment variable, default to 5000 for local testing
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
